@@ -1,33 +1,15 @@
 'use strict'
 
 const express = require('express');
-const fetch = require('node-fetch');
-const config = require('../config');
-const { hostname, path} = config.baseUrl;
 const app = express.Router();
-
-const generateUrlWeather = (city) => `https://${hostname}${path}/weather?q=${city}&units=metric&appid=${config.ApiKey}`;
-const generateUrlForecast = (city) => `https://${hostname}${path}/forecast?q=${city}&units=metric&appid=${config.ApiKey}`;
-const currentLocation = async () => {
-    const location = await fetch('http://ip-api.com/json/');
-    const response = await location.json();
-    return response;
-}
-
-const currentWeather = async (city) => {
-    const weather = await fetch(generateUrlWeather(city));
-    const response = await weather.json();
-    return response;
-}
-
-const forecastWeek = async (city) => {
-    const forecast = await fetch(generateUrlForecast(city));
-    const response = await forecast.json();
-    return response;
-}
+const { 
+    currentLocation,
+    currentWeather,
+    forecastWeek 
+} = require('../services');
 
 app.get('/', (req, res, err) => {
-    res.send('hola word');
+    res.send('is the magic');
 });
 
 app.get('/location', async (req, res, err) => {
@@ -49,7 +31,7 @@ app.get('/current/:city?', async (req, res, err) => {
             currentCity = location.city;
         }
         const weatherToday = await currentWeather(city ? city: currentCity);
-        res.send(weatherToday);
+        res.status(201).send(weatherToday);
     } catch(err) {
         console.log(err)
     }
