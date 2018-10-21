@@ -10,7 +10,7 @@ const {
 const { handleError } = require('../utils');
 
 app.get('/', (req, res, err) => {
-    res.send('is the magic');
+    res.status(200).send({status: 'Ok'});
 });
 
 app.get('/location', async (req, res) => {
