@@ -1,4 +1,3 @@
-const url = require('url');
 const config = require('../config');
 const { hostname, path} = config.baseUrl;
 
