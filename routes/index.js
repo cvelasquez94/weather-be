@@ -29,7 +29,7 @@ app.get('/current/:city?', async (req, res) => {
         let currentCity;
         if (!city) {
             location = await currentLocation();
-            currentCity = location.city;
+            currentCity = location.city.length > 14 ? location.country : location.city;
         }
         const weatherToday = await currentWeather(city ? city: currentCity);
         res.status(201).send(weatherToday);
@@ -45,7 +45,7 @@ app.get('/forecast/:city?', async (req, res) => {
         let currentCity;
         if (!city) {
             location = await currentLocation();
-            currentCity = location.city;
+            currentCity = location.city.length > 14 ? location.country : location.city;;
         }
         const forecast = await forecastWeek(city ? city : currentCity); 
         res.status(201).send(forecast);
