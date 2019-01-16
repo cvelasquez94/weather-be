@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:alpine
 
 COPY ["package.json","package-lock.json", "/usr/src/"]
 
@@ -11,4 +11,3 @@ COPY [".", "/usr/src/"]
 EXPOSE 5000
 
 CMD ["npx","nodemon", "index.js"]
-

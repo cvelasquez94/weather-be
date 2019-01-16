@@ -1,11 +1,10 @@
 # Node Api - Weather
 
-## Setup
+## Setup and Run
 
 * Clone this repository
 * Choose one of these project: `cd weather-be`
 * Install dependencies: `npm install or yarn install`
-* Start server: `npm start`
 * Access the url: http://localhost:5000
 * Endpoints:
   * Current weather: `GET /v1/current`
@@ -23,6 +22,7 @@
       ApiKey: 'YOU KEY'
     }
     ```
+* Start server: `npm start` or for mode dev `npm start:dev`
 
 ## Test
 
